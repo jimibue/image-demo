@@ -46,7 +46,7 @@ class Profile extends React.Component {
     this.setState({
       editing: false,
       formValues: {
-        ...this.formValues,
+        ...this.state.formValues, //here
         file: "",
       },
     });
@@ -56,7 +56,7 @@ class Profile extends React.Component {
       auth: { user },
     } = this.props;
     return (
-      <Grid.Row>
+      <Grid>
         <Grid.Column width={4}>
           <Image src={user.image || defaultImage} />
         </Grid.Column>
@@ -64,11 +64,11 @@ class Profile extends React.Component {
           <Header as="h1">Name: {user.name}</Header>
           <Header as="h1">Email: {user.email}</Header>
         </Grid.Column>
-      </Grid.Row>
+      </Grid>
     );
   };
   onDrop = (files) => {
-    this.setState({ formValues: { ...this.formValues, file: files[0] } });
+    this.setState({ formValues: { ...this.state.formValues, file: files[0] } });
   };
   editView = () => {
     const {

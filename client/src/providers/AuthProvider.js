@@ -45,15 +45,17 @@ export class AuthProvider extends React.Component {
   };
 
   updateUser = (id, userObj) => {
-    console.log("id", id);
-    console.log("userObj", userObj);
     let data = new FormData();
     data.append("file", userObj.file);
-    data.append("x", userObj.email);
+    console.log("file", userObj.file);
     axios
       .put(`/api/users/${id}?email=${userObj.email}&name=${userObj.name}`, data)
       .then((res) => {
-        console.log(res);
+        console.log("res", res);
+        this.setState({ user: res.data });
+      })
+      .catch((e) => {
+        console.log(e);
       });
   };
 
